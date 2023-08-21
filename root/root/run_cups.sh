@@ -16,5 +16,11 @@ if [ ! -f /config/printers.conf ]; then
 fi
 cp /config/printers.conf /etc/cups/printers.conf
 
+rm -rf /etc/avahi/services/*
+if [ `ls -l /services/*.service 2>/dev/null | wc -l` -gt 0 ]; then
+	cp -f /services/*.service /etc/avahi/services/
+fi
+/etc/init.d/avahi-daemon start
+
 /root/printer-update.sh &
 exec /usr/sbin/cupsd -f
