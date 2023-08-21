@@ -132,7 +132,7 @@ class AirPrintGenerate(object):
                 tree.parse(StringIO(XML_TEMPLATE.replace('\n', '').replace('\r', '').replace('\t', '')))
 
                 name = tree.find('name')
-                name.text = 'AirPrint %s @ %%h' % (p)
+                name.text = 'AirPrint_%s @ %%h' % (p)
 
                 service = tree.find('service')
 
